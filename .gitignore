@@ -1,1 +1,4 @@
 annotatorLogger/mainApp/target
+annotatorLogger/.idea/libraries
+annotatorLogger/processor/target
+workspace.xml
