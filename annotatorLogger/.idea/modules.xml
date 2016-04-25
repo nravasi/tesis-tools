@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/annotatorLogger.iml" filepath="$PROJECT_DIR$/annotatorLogger.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mainApp/mainApp.iml" filepath="$PROJECT_DIR$/mainApp/mainApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/processor/processor.iml" filepath="$PROJECT_DIR$/processor/processor.iml" />
     </modules>
   </component>
 </project>

@@ -22,11 +22,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="annotatorLogger" />
+        <module name="mainApp" />
+        <module name="processor" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="annotatorLogger" target="1.5" />
+      <module name="mainApp" target="1.5" />
+      <module name="processor" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
