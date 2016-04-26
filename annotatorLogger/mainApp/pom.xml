@@ -38,6 +38,8 @@
                 <configuration>
                     <processors>
                         <processor>com.tesis.annotatorLogger.processors.CatchProcessor</processor>
+
+                        <processor>com.tesis.annotatorLogger.processors.IfProcessor</processor>
                     </processors>
                 </configuration>
             </plugin>
