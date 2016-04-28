@@ -17,8 +17,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="processor" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:3.8.1" level="project" />
-    <orderEntry type="library" name="Maven: fr.inria.gforge.spoon:spoon-core:4.1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse.jdt.core.compiler:ecj:4.4" level="project" />
+    <orderEntry type="library" name="Maven: fr.inria.gforge.spoon:spoon-core:5.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.jdt:org.eclipse.jdt.core:3.12.0.v20150913-1717" level="project" />
     <orderEntry type="library" name="Maven: com.martiansoftware:jsap:2.1" level="project" />
     <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:1.3.2" level="project" />

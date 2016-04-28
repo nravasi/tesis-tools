@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     Button second;
     EditText input;
     TextView output;
+    private static String TAG = "mainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
