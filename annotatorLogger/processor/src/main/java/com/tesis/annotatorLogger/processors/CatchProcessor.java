@@ -1,6 +1,5 @@
 package com.tesis.annotatorLogger.processors;
 
-import org.apache.log4j.Level;
 import spoon.processing.AbstractProcessor;
 import spoon.processing.Severity;
 import spoon.reflect.code.CtCatch;

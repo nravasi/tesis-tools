@@ -6,11 +6,10 @@ public class App {
 
         String valor = "hello" + "hello";
 
-            if (valor.equals("hello")) {
-
-
-            } else {
-
-            }
+        if (valor.equals("hello")) {
+            int a = 0;
+        } else {
+            int b = 0;
+        }
     }
 }

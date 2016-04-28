@@ -1,4 +1,4 @@
-package com.tesis.annotatorLogger.processors;
+package org.thesis.nrip.processors;
 
 
 import spoon.processing.AbstractProcessor;
@@ -26,7 +26,7 @@ public class IfProcessor extends AbstractProcessor<CtIf> {
             ctIf.getThenStatement().insertBefore(thenLog);
 
             CtStatement elseLog = getFactory().Code().createCodeSnippetStatement(String.format(logCodeTemplate, varName, value, "F"));
-            ctIf.getElseStatement().insertBefore(elseLog);
+            ctIf.getElseStatement().insertBefore(thenLog);
         }
     }
 

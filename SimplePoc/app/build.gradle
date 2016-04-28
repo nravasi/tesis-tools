@@ -23,4 +23,28 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
+//    compile project(':processors')
+    compile 'fr.inria.gforge.spoon:spoon-core:5.1.0'
+
 }
+
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+    dependencies {
+        classpath group: 'fr.inria.gforge.spoon',
+                name: 'spoon-gradle-plugin',
+                version: '1.0-SNAPSHOT'
+        classpath group: 'com.tesis.annotatorLogger',
+                name: 'processor',
+                version:'1.0-SNAPSHOT'
+    }
+}
+apply plugin: 'spoon-android'
+
+spoon {
+    processors = ['com.tesis.annotatorLogger.processors.IfProcessor']
+}
+

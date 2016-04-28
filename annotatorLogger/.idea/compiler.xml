@@ -27,9 +27,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="annotatorLogger" target="1.5" />
-      <module name="mainApp" target="1.5" />
-      <module name="processor" target="1.5" />
+      <module name="annotatorLogger" target="1.8" />
+      <module name="mainApp" target="1.8" />
+      <module name="processor" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
