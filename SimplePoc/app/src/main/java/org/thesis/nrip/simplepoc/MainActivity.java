@@ -1,6 +1,6 @@
 package org.thesis.nrip.simplepoc;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     Button first;
     Button second;
@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String text = input.getText().toString();
 
-                if(text.equals("1")){
+                if (text.equals("1")) {
                     output.setText("Ganaste!");
-                }else{
+                } else {
                     output.setText("Perdiste!");
                 }
 

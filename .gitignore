@@ -4,3 +4,4 @@ annotatorLogger/processor/target
 workspace.xml
 soot
 sootall-2.5.0
+inlineWithSoot/.idea
