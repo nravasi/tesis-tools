@@ -2,3 +2,5 @@ annotatorLogger/mainApp/target
 annotatorLogger/.idea
 annotatorLogger/processor/target
 workspace.xml
+soot
+sootall-2.5.0
