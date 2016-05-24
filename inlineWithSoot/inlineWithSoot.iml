@@ -10,5 +10,6 @@
     <orderEntry type="library" name="sootjavadoc-trunk" level="project" />
     <orderEntry type="library" name="soot-trunk" level="project" />
     <orderEntry type="library" name="sootsources-trunk" level="project" />
+    <orderEntry type="library" name="groovy-2.4.6" level="application" />
   </component>
 </module>
