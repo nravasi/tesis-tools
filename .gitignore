@@ -6,3 +6,8 @@ soot
 sootall-2.5.0
 inlineWithSoot/.idea
 inlineWithSoot/out
+emma/
+loganalyzer/.idea
+loganalyzer/out
+loganalyzer/bin
+
