@@ -5,6 +5,8 @@ import java.util.regex.Pattern
  */
 pattern = Pattern.compile(".*objCls: ([^ ]*) mthd: ([^ ]*) .*")
 
+res = new HashMap();
+
 def getMethodName(String s) {
     def match = pattern.matcher(s);
     if (match.matches()) {
@@ -12,15 +14,31 @@ def getMethodName(String s) {
     }
 }
 
-def methods = new HashSet()
+def processFile(String fname) {
+    def methods = new HashSet()
 
-new File('../logsout.txt').eachLine {
-    methods << getMethodName(it);
+    new File('../input/' + fname).eachLine {
+        methods << getMethodName(it);
+    }
+    println fname
+    println  fname.split()
+    output = new File("../output/" + fname.split(Pattern.quote('.'))[0] + '-uniq.txt')
+
+    methods.each {
+        output << it + '\n'
+    }
+
+    res.put(fname.split(Pattern.quote('.'))[0], methods.size());
 }
 
-output = new File("../analyzed.txt")
 
-methods.each {
-    output << it + '\n'
+def list = new File('../input').list()
+list.each {
+    if (!it.startsWith('.')) processFile(it)
 }
 
+
+def file = new File("../output/summary.txt")
+res.each {
+    file << it.key + '\t' + it.value + '\n'
+}
