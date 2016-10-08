@@ -1,3 +1,7 @@
+import org.apache.commons.io.FileUtils
+
+@Grab(group = 'commons-io', module = 'commons-io', version = '2.5')
+
 import java.util.regex.Pattern
 
 /**
@@ -18,10 +22,9 @@ def processFile(String fname) {
     def methods = new HashSet()
 
     new File('../input/' + fname).eachLine {
-        methods << getMethodName(it);
+        def name = getMethodName(it)
+        name && methods << name;
     }
-    println fname
-    println  fname.split()
     output = new File("../output/" + fname.split(Pattern.quote('.'))[0] + '-uniq.txt')
 
     methods.each {
@@ -31,14 +34,18 @@ def processFile(String fname) {
     res.put(fname.split(Pattern.quote('.'))[0], methods.size());
 }
 
+FileUtils.cleanDirectory(new File("../output"))
 
 def list = new File('../input').list()
 list.each {
     if (!it.startsWith('.')) processFile(it)
 }
 
-
 def file = new File("../output/summary.txt")
+if (file.exists()) {
+    file.delete();
+}
+
 res.each {
     file << it.key + '\t' + it.value + '\n'
 }
