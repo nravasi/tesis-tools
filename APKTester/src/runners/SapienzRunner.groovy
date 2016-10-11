@@ -2,6 +2,7 @@ package runners
 
 import configuration.Command
 import configuration.Config
+import model.APK
 
 /**
  * Created by nmravasi on 10/8/16.
@@ -12,7 +13,7 @@ class SapienzRunner extends AbstractRunner {
     }
 
     @Override
-    void testApk(APK apk = null) {
+    void testApk(APK apk) {
 
     }
 

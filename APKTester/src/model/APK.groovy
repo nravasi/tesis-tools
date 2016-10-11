@@ -9,25 +9,34 @@ import java.util.regex.Pattern
  */
 class APK {
 
-    static Pattern namePattern = Pattern.compile('^application-label:\'(.*)\'$', Pattern.MULTILINE)
+    static Pattern packageNamePattern = Pattern.compile('^package: name=\'(.*)\' versionCode.*$', Pattern.MULTILINE)
+    static Pattern appnamePattern = Pattern.compile('^application-label:\'(.*)\'$', Pattern.MULTILINE)
 
     File file;
-    String appname;
+    String appName;
+    String packageName;
 
     APK(File file) {
         this.file = file;
-        appname = getAppname(file)
+        setNames(file)
     }
 
 
-    static String getAppname(File file){
+    private String setNames(File file){
 
         def proc =  Command.run('aapt d badging ' + file.toString())
 
-        def matcher = namePattern.matcher(proc.text)
+        def text = proc.text
+        def matcher = appnamePattern.matcher(text)
 
         if (matcher.find()) {
-            return matcher.group(1);
+            appName = matcher.group(1);
+        }
+
+        matcher = packageNamePattern.matcher(text)
+
+        if (matcher.find()) {
+            packageName = matcher.group(1);
         }
     }
 }
