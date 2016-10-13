@@ -31,17 +31,17 @@ public abstract class AbstractRunner {
 
     public void start(){
         apks.each{
-            beforeEachApk();
+            beforeEachApk(it);
             testApk(it);
-            done()
+            done(it)
         }
     }
 
-    def done() {}
+    def done(APK apk) {}
 
     public abstract void testApk(APK apk);
 
-    public void beforeEachApk() {
+    public void beforeEachApk(APK apk) {
 
     }
 }

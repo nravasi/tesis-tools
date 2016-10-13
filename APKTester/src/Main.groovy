@@ -67,5 +67,6 @@ class Main {
 
         def runner = AbstractRunner.getRunner(apks);
 
+        runner.start();
     }
 }
