@@ -12,6 +12,12 @@ class SapienzRunner extends AbstractRunner {
         super(apks)
     }
 
+
+    @Override
+    void beforeStart(){
+        def monitorInstalled = Command.runAndRead("adb push utils/monitor_api19.apk data/local/tmp/monitor.apk");
+    }
+
     @Override
     void testApk(APK apk) {
 

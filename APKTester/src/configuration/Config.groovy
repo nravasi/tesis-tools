@@ -10,9 +10,14 @@ public class Config {
     public static String MONITOR_APK_DIR_IN_DEVICE =  '';
     public static String SD_PATH =  '/data/media/0/';
     public static String APKS_PATH =  'apks';
+    public static String SDK = "C:/Users/Ignacio/AppData/Local/Android/Sdk";
+    public static String ADV_NAME = "Nexus_7_2012_Edited_API_19"
 
     public static int minutes =  1;
 
     public static boolean shouldInline = false;
-    public static Tool TOOL_TO_USE = Tool.DROIDMATE;
+    public static Tool TOOL_TO_USE = Tool.MONKEY;
+
+    //Way until kill monkey 30 min would be 18000000 (in milliseconds )
+    public static Long TIMEOUT_BEFORE_KILL = 10000;
 }

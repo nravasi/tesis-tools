@@ -30,6 +30,9 @@ public abstract class AbstractRunner {
     }
 
     public void start(){
+
+        beforeStart();
+
         apks.each{
             beforeEachApk(it);
             testApk(it);
@@ -38,6 +41,8 @@ public abstract class AbstractRunner {
     }
 
     def done(APK apk) {}
+
+    public void beforeStart(){};
 
     public abstract void testApk(APK apk);
 

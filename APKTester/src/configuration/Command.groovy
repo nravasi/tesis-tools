@@ -15,7 +15,16 @@ class Command {
         def waiting = process.waitFor();
 
         if(waiting != 0){
+            throw new RuntimeException("There was an error running this command: " + command);
         }
+
+        return process.text.readLines();
+    }
+
+    public static ArrayList runAndKillAfterTimeout(String command) {
+        def process = command.execute();
+
+        process.waitForOrKill(Config.TIMEOUT_BEFORE_KILL);
 
         return process.text.readLines();
     }
