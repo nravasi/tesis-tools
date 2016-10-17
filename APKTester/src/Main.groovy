@@ -1,5 +1,6 @@
 import configuration.Command
 import configuration.Config
+import logger.LogDaemon
 import model.APK
 import org.apache.commons.io.FileUtils
 import runners.AbstractRunner
@@ -13,7 +14,7 @@ import java.nio.file.Paths
 class Main {
 
     public static void main(String[] args) {
-
+        println(Command.run("pwd").text);
 
         def lines = Command.run('adb devices').text.readLines()
         if (lines.size() != 3){
@@ -76,7 +77,8 @@ class Main {
             it.name.endsWith('inlined.apk')
         }.collect { new APK(it) }
 
-        def runner = AbstractRunner.getRunner(apks);
+        def loggerDaemon = new LogDaemon();
+        def runner = AbstractRunner.getRunner(apks, loggerDaemon);
 
         runner.start();
     }

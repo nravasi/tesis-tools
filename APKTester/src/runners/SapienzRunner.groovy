@@ -8,13 +8,13 @@ import model.APK
  * Created by nmravasi on 10/8/16.
  */
 class SapienzRunner extends AbstractRunner {
-    protected SapienzRunner(apks) {
-        super(apks)
+    protected SapienzRunner(apks, daemon) {
+        super(apks, daemon)
     }
 
 
     @Override
-    void beforeStart(){
+    void beforeStart() {
         def monitorInstalled = Command.runAndRead("adb push utils/monitor_api19.apk data/local/tmp/monitor.apk");
     }
 

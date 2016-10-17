@@ -5,6 +5,7 @@ package configuration
 public class Config {
 
     public static String DROIDMATE_DIR =  '/Users/nmravasi/dev/thesis/droidmate/dev/droidmate/';
+    public static String THIS_PATH =  '/Users/nmravasi/dev/thesis/tesis-tools/APKTester/';
     public static String SAPIENZ_DIR =  '';
     public static String MONKEY_RUNNER_DIR =  '';
     public static String MONITOR_APK_DIR_IN_DEVICE =  '';
@@ -13,7 +14,7 @@ public class Config {
     public static String SDK = "C:/Users/Ignacio/AppData/Local/Android/Sdk";
     public static String ADV_NAME = "Nexus_7_2012_Edited_API_19"
 
-    public static int minutes =  1;
+    public static int minutes =  3;
 
     public static boolean shouldInline = false;
     public static Tool TOOL_TO_USE = Tool.MONKEY;
