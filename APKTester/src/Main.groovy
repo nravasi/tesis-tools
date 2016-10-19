@@ -14,8 +14,6 @@ import java.nio.file.Paths
 class Main {
 
     public static void main(String[] args) {
-        println(Command.run("pwd").text);
-
         def lines = Command.run('adb devices').text.readLines()
         if (lines.size() != 3){
 
@@ -81,5 +79,7 @@ class Main {
         def runner = AbstractRunner.getRunner(apks, loggerDaemon);
 
         runner.start();
+
+        System.exit(0)
     }
 }

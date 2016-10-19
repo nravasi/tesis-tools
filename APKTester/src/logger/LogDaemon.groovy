@@ -21,7 +21,7 @@ class LogDaemon  {
     def notifyStart(APK apk) {
         println("Instantiating daemon")
         def retriever = new LogRetriever(apk)
-        future = executor.scheduleAtFixedRate(retriever, 10, 10, TimeUnit.SECONDS)
+        future = executor.scheduleAtFixedRate(retriever, 1, 1, TimeUnit.MINUTES)
     }
 
     def notifyFinish() {
@@ -43,7 +43,7 @@ class LogDaemon  {
             timestamp++;
             println("Executing retriever for iteration no.$timestamp")
 
-            def cmd = "adb pull \"${Config.SD_PATH}logs/${apk.appName}.txt\" \"${Config.THIS_PATH}tmp"
+            def cmd = "adb pull ${Config.SD_PATH}logs/${apk.appName}.txt tmp/${apk.appName}_${timestamp}.txt"
             println(cmd)
             println(Command.run("pwd").text)
             def run = Command.run(cmd);
