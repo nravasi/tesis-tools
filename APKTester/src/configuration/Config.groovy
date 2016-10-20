@@ -11,8 +11,8 @@ public class Config {
     public static String MONITOR_APK_DIR_IN_DEVICE =  '';
     public static String SD_PATH =  '/data/media/0/';
     public static String APKS_PATH =  'apks';
-    public static String SDK = "C:/Users/Ignacio/AppData/Local/Android/Sdk";
-    public static String ADV_NAME = "Nexus_7_2012_Edited_API_19"
+    public static String SDK = "C:\\Users\\Ignacio\\AppData\\Local\\Android\\Sdk\\tools";
+    public static String ADV_NAME = "Nexus_7_2012_Edited_API_19";
 
     public static int minutes =  3;
 
