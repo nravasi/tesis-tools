@@ -16,9 +16,9 @@ class Main {
 
     public static void main(String[] args) {
 
-        if (!ADB.IsDeviceUp()){
+        if (!ADB.IsDeviceUp()) {
             ADB.RunEmulator();
-
+        }
 //        Command.run('adb shell rm -rf ' + Config.SD_PATH + 'logs')
         File apksPath = new File(Config.APKS_PATH);
 
