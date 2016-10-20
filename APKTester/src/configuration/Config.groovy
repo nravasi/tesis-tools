@@ -14,7 +14,7 @@ public class Config {
     public static String SDK = "C:\\Users\\Ignacio\\AppData\\Local\\Android\\Sdk\\tools";
     public static String ADV_NAME = "Nexus_7_2012_Edited_API_19";
 
-    public static int minutes =  3;
+    public static int minutes =  5;
 
     public static boolean shouldInline = false;
     public static Tool TOOL_TO_USE = Tool.MONKEY;

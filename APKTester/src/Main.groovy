@@ -18,7 +18,6 @@ class Main {
 
         if (!ADB.IsDeviceUp()){
             ADB.RunEmulator();
-        }
 
 //        Command.run('adb shell rm -rf ' + Config.SD_PATH + 'logs')
         File apksPath = new File(Config.APKS_PATH);
@@ -71,5 +70,7 @@ class Main {
         def runner = AbstractRunner.getRunner(apks, loggerDaemon);
 
         runner.start();
+
+        System.exit(0)
     }
 }

@@ -30,7 +30,7 @@ class APK {
         def matcher = appnamePattern.matcher(text)
 
         if (matcher.find()) {
-            appName = matcher.group(1);
+            appName = matcher.group(1).replace(" ", "_");
         }
 
         matcher = packageNamePattern.matcher(text)

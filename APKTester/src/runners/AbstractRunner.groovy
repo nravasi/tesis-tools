@@ -2,6 +2,7 @@ package runners
 
 import configuration.Config
 import configuration.Tool
+import logger.LogAnalyzer
 import logger.LogDaemon
 import model.APK
 
@@ -48,7 +49,11 @@ public abstract class AbstractRunner {
         finished = true;
     }
 
-    def done(APK apk) {}
+    def done(APK apk) {
+        def analyzer = new LogAnalyzer();
+        def files = analyzer.processFiles();
+        println(files) // Esta es la posta
+    }
 
     public void beforeStart() {};
 
