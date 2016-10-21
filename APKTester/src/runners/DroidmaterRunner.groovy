@@ -1,5 +1,6 @@
 package runners
 
+import configuration.Command
 import configuration.Config
 import model.APK
 import org.apache.commons.io.FileUtils
@@ -13,6 +14,7 @@ import java.util.regex.Pattern
 class DroidmaterRunner extends AbstractRunner {
 
     def timeLimitPattern = Pattern.compile(".*timeLimit (\\d+).*")
+    private File apksDir
 
     protected DroidmaterRunner(apks, daemon) {
         super(apks, daemon)
@@ -20,6 +22,13 @@ class DroidmaterRunner extends AbstractRunner {
 
     @Override
     void testApk(APK apk) {
+        println("Executing droidmate for ${apk.appName}")
+        def droidmateCmd = Config.DROIDMATE_DIR + 'gradlew -p ' + Config.DROIDMATE_DIR + ' :p:com:run'
+        def inliner = Command.run(droidmateCmd);
+
+        def res = inliner.waitFor()
+
+        println("Finished testing apk ${apk.appName}")
 
     }
 
@@ -46,13 +55,17 @@ class DroidmaterRunner extends AbstractRunner {
         println("Cleaning all files in apk/inlined directory")
 
 
-        def apksTargetDir = Paths.get(Config.DROIDMATE_DIR, 'apks', 'inlined').toFile()
-        apksTargetDir.listFiles()
+        apksDir = Paths.get(Config.DROIDMATE_DIR, 'apks', 'inlined').toFile()
+        apksDir.listFiles()
                 .findAll { it.name.endsWith('apk') }.each { it.delete() }
-
-        FileUtils.copyDirectory(Paths.get(Config.APKS_PATH).toFile(), apksTargetDir)
-
     }
 
+    @Override
+    void beforeEachApk(APK apk) {
+        super.beforeEachApk(apk)
 
+        println("Copying ${apk.file.name} to droidmate apks directory")
+
+        FileUtils.copyFileToDirectory(apk.file, apksDir);
+    }
 }
