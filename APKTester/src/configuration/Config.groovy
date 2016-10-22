@@ -6,7 +6,7 @@ public class Config {
 
     public static String DROIDMATE_DIR =  '/Users/nmravasi/dev/thesis/droidmate/dev/droidmate/';
     public static String THIS_PATH =  '/Users/nmravasi/dev/thesis/tesis-tools/APKTester/';
-    public static String SAPIENZ_DIR =  '';
+    public static String SAPIENZ_DIR =  '/Users/nmravasi/dev/thesis/sapienz/';
     public static String MONKEY_RUNNER_DIR =  '';
     public static String MONITOR_APK_DIR_IN_DEVICE =  '';
     public static String SD_PATH =  '/data/media/0/';

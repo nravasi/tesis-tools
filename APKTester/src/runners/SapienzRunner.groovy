@@ -15,11 +15,16 @@ class SapienzRunner extends AbstractRunner {
 
     @Override
     void beforeStart() {
-        def monitorInstalled = Command.runAndRead("adb push utils/monitor_api19.apk data/local/tmp/monitor.apk");
+//        def monitorInstalled = Command.runAndRead("adb push utils/monitor_api19.apk data/local/tmp/monitor.apk");
     }
 
     @Override
     void testApk(APK apk) {
+        println("Starting sapienz for apk ${apk.appName}")
+
+        def process = Command.run("python ${Config.SAPIENZ_DIR}main.py ${apk.file.absolutePath}")
+        process.waitForOrKill(Config.minutes * 60000)
+        println("Terminating sapienz for apk ${apk.appName}")
 
     }
 
