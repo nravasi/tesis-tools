@@ -1,3 +1,4 @@
+import configuration.ADB
 import configuration.Command
 import configuration.Config
 import logger.LogDaemon
@@ -14,8 +15,10 @@ import java.nio.file.Paths
 class Main {
 
     public static void main(String[] args) {
-        def lines = Command.run('adb devices').text.readLines()
+
+        /*def lines = Command.run('adb devices').text.readLines()
         if (lines.size() != 3) {
+        }*/
 
             //Mi idea es levantar la adv si no se encuentra, tambien hay q matarla y levantarla siempre, por que a veces se cuelgan las aplicaciones.
             //No me esta funcionando .. Si ne podes ayudar genial . el emulador esta en la carpeta sdk . hay que correrlo desde ahi , diciendo emulator -avd <nombre-emulador>
@@ -24,8 +27,10 @@ class Main {
 
             //deberiamos remover esto una vez q funcione lo otro
             //  throw new RuntimeException("Ensure there's exactly one device running")
-        }
 
+        if (!ADB.IsDeviceUp()) {
+            ADB.RunEmulator();
+        }
 //        Command.run('adb shell rm -rf ' + Config.SD_PATH + 'logs')
         File apksPath = new File(Config.APKS_PATH);
 
