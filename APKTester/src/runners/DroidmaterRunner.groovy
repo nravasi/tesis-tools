@@ -61,8 +61,8 @@ class DroidmaterRunner extends AbstractRunner {
     }
 
     @Override
-    void beforeEachApk(APK apk) {
-        super.beforeEachApk(apk)
+    void beforeApk(APK apk) {
+        super.beforeApk(apk)
 
         println("Copying ${apk.file.name} to droidmate apks directory")
 

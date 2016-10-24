@@ -37,7 +37,7 @@ class ADB {
             throw new RuntimeException("Remove " + packageName + " failed ")
         }
 
-        println "Remove OK";
+        println "Remove OK"
     }
 
     public static void KillAPK(String nameApk){
