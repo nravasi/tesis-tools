@@ -17,10 +17,10 @@ class LogAnalyzer {
         }
     }
 
-    def processFile(String fname) {
+    def processFile(File file) {
         def methods = new HashSet()
 
-        new File("tmp/${fname}").eachLine {
+        file.eachLine {
             def name = getMethodName(it)
             name && methods << name;
         }
@@ -30,14 +30,16 @@ class LogAnalyzer {
             output << it + '\n'
         }*/
 
-        res.put(fname.split(Pattern.quote('.'))[0].split(Pattern.quote("_")).last(), methods.size());
+        res.put(file.name.split(Pattern.quote('.'))[0].split(Pattern.quote("_")).last(), methods.size());
+
+        file.delete()
     }
 
 
     def processFiles() {
-        def list = new File('./tmp').list()
+        def list = new File('./tmp').listFiles()
         list.each {
-            if (!it.startsWith('.')) processFile(it)
+            if (!it.name.startsWith('.')) processFile(it)
         }
 
         return res;

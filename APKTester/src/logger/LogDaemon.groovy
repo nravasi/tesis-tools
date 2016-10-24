@@ -44,10 +44,9 @@ class LogDaemon  {
             println("Executing retriever for iteration no.$timestamp")
 
             def cmd = "adb pull ${Config.SD_PATH}logs/${apk.appName}.txt tmp/${apk.appName}_${timestamp}.txt"
-            println(cmd)
-            println(Command.run("pwd").text)
             def run = Command.run(cmd);
-            println(run.text)
+            println("Retrieved ${apk.appName}_${timestamp}.txt file")
+
         }
     }
 }

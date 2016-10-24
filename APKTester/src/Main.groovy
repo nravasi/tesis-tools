@@ -16,6 +16,18 @@ class Main {
 
     public static void main(String[] args) {
 
+        /*def lines = Command.run('adb devices').text.readLines()
+        if (lines.size() != 3) {
+        }*/
+
+            //Mi idea es levantar la adv si no se encuentra, tambien hay q matarla y levantarla siempre, por que a veces se cuelgan las aplicaciones.
+            //No me esta funcionando .. Si ne podes ayudar genial . el emulador esta en la carpeta sdk . hay que correrlo desde ahi , diciendo emulator -avd <nombre-emulador>
+            // Command.run("cd C:/Users/Ignacio/AppData/Local/Android/Sdk" );
+            // Command.run("emulator -avd " + Config.ADV_NAME);
+
+            //deberiamos remover esto una vez q funcione lo otro
+            //  throw new RuntimeException("Ensure there's exactly one device running")
+
         if (!ADB.IsDeviceUp()) {
             ADB.RunEmulator();
         }
@@ -57,7 +69,7 @@ class Main {
             argsFile.write(originalArgs);
 
             println('Copying apk back to path')
-
+            apksPath.deleteDir()
             FileUtils.copyDirectory(inlinePath, apksPath)
             FileUtils.deleteDirectory(new File(apksPath, 'originals'))
         }
