@@ -62,6 +62,8 @@ class ADB {
 
     public static void RunEmulator(){
 
+        println "Running Emulator - ${ADV_NAME}"
+
         Command.run("${SDK}/emulator -avd ${ADV_NAME}");
 
         def isRunning = false;
@@ -72,6 +74,7 @@ class ADB {
             if(isRunning){
                 //wait 10 seconds just in case..
                 Thread.sleep(10000);
+                println "Emulator ${ADV_NAME} is UP"
             }
 
             //wait 2 second to avoid followed  commands
