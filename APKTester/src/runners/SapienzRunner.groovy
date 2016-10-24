@@ -24,8 +24,8 @@ class SapienzRunner extends AbstractRunner {
     }
 
     @Override
-    void beforeEachApk(APK apk) {
-        super.beforeEachApk()
+    void beforeApk(APK apk) {
+        super.beforeApk()
 
         def rmSd = 'adb shell rm -f ' + Config.SD_PATH
 

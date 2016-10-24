@@ -40,6 +40,19 @@ class ADB {
         println "Remove OK";
     }
 
+    public static void KillAPK(String nameApk){
+        def pid = GetPid(nameApk)
+
+        println "Kill ${nameApk} - ${pid}"
+        Command.run "adb shell kill ${pid}"
+    }
+
+    public static String GetPid(String nameApk){
+       def processInfo = Command.run("adb shell ps | grep ${nameApk}").text.readLines();
+
+        return processInfo[0].split(" ")[6]
+    }
+
     public static Boolean IsDeviceUp(){
 
         def emulatorRunning = Command.run("adb shell getprop sys.boot_completed").text.readLines();

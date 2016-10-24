@@ -5,9 +5,6 @@ import configuration.Command
 import configuration.Config
 import model.APK
 
-import java.util.concurrent.Executors
-import java.util.concurrent.TimeUnit
-
 /**
  * Created by nmravasi on 10/8/16.
  */
@@ -22,8 +19,8 @@ class MonkeyRunner extends AbstractRunner {
     boolean doRun = true;
 
     @Override
-    void beforeEachApk(APK apk) {
-        super.beforeEachApk();
+    void beforeApk(APK apk) {
+        super.beforeApk();
 
         //remove the apk before install it, if it exists
         if (ADB.IsAPKInstalled(apk.packageName)) {
@@ -40,6 +37,13 @@ class MonkeyRunner extends AbstractRunner {
     }
 
     @Override
+    void afterApk(APK apk) {
+        super.afterApk(apk)
+
+        ADB.RemoveAPK(apk.packageName);
+    }
+
+    @Override
     void testApk(APK apk) {
         println "Running MONKEY";
 
@@ -47,21 +51,14 @@ class MonkeyRunner extends AbstractRunner {
 
         def monkeyCmd = "adb shell monkey -p ${apk.packageName} -v ${2000}";
 
+        Command.run(monkeyCmd)
 
-        Executors.newScheduledThreadPool(1).schedule(new Runnable() {
-            @Override
-            void run() {
-                doRun =false;
-            }
-        }, Config.minutes, TimeUnit.MINUTES);
+        Thread.sleep(Config.TIMEOUT_BEFORE_KILL)
 
-        while (doRun) {
-            println("Iterating monkey")
-            def run = Command.run(monkeyCmd);
-            run.waitFor()
-        }
+        ADB.KillAPK("com.android.commands.monkey");
+        //ADB.KillAPK(apk.packageName);
 
-        println("Monkey finished")
+        println "Monkey finished";
         /* Command.run(monkeyCmd);*/
     }
 

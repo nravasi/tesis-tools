@@ -39,10 +39,11 @@ public abstract class AbstractRunner {
         beforeStart();
 
         apks.each {
-            beforeEachApk(it);
+            beforeApk(it);
             loggerDaemon.notifyStart(it);
             testApk(it);
             loggerDaemon.notifyFinish();
+            afterApk(it)
             done(it)
         }
 
@@ -59,7 +60,6 @@ public abstract class AbstractRunner {
 
     public abstract void testApk(APK apk);
 
-    public void beforeEachApk(APK apk) {
-
-    }
+    public void beforeApk(APK apk) {}
+    public void afterApk(APK apk){}
 }
