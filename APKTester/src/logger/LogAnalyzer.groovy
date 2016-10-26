@@ -37,7 +37,7 @@ class LogAnalyzer {
 
 
     def processFiles() {
-        def list = new File('./tmp').listFiles()
+        def list = new File('.\\tmp').listFiles()
         list.each {
             if (!it.name.startsWith('.')) processFile(it)
         }

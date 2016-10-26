@@ -33,7 +33,8 @@ class MonkeyRunner extends AbstractRunner {
 
     @Override
     void beforeStart() {
-//        Command.runAndRead("adb push utils/monitor_api19.apk data/local/tmp/monitor.apk");
+       super.beforeStart()
+       Command.runAndRead("adb push utils/monitor_api19.apk data/local/tmp/monitor.apk");
     }
 
     @Override
@@ -47,19 +48,15 @@ class MonkeyRunner extends AbstractRunner {
     void testApk(APK apk) {
         println "Running MONKEY";
 
-        doRun = true;
-
-        def monkeyCmd = "adb shell monkey -p ${apk.packageName} -v ${2000}";
+        def monkeyCmd = "adb shell monkey -p ${apk.packageName} -v ${20000000}";
 
         Command.run(monkeyCmd)
 
         Thread.sleep(Config.TIMEOUT_BEFORE_KILL)
 
         ADB.KillAPK("com.android.commands.monkey");
-        //ADB.KillAPK(apk.packageName);
 
-        println "Monkey finished";
+        println "Monkey finished OK";
         /* Command.run(monkeyCmd);*/
     }
-
 }

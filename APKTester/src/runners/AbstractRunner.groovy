@@ -39,24 +39,37 @@ public abstract class AbstractRunner {
         beforeStart();
 
         apks.each {
-            beforeApk(it);
-            loggerDaemon.notifyStart(it);
-            testApk(it);
-            loggerDaemon.notifyFinish();
+            beforeApk(it)
+            loggerDaemon.notifyStart(it)
+            testApk(it)
+            loggerDaemon.notifyFinish()
             afterApk(it)
             done(it)
         }
+
+        println "All APks runned OK"
 
         finished = true;
     }
 
     def done(APK apk) {
-        def analyzer = new LogAnalyzer();
-        def files = analyzer.processFiles();
+
+        def analyzer = new LogAnalyzer()
+        def files = analyzer.processFiles()
+
+        def results = new File("results.txt");
+        results.createNewFile();
+
+        results.append("${apk.packageName}: ${files}")
+        results.append(System.getProperty("line.separator"))
+
         println(files) // Esta es la posta
     }
 
-    public void beforeStart() {};
+    public void beforeStart() {
+        def results = new File("results.txt")
+        results.write(" ")  // clean the file
+    };
 
     public abstract void testApk(APK apk);
 
