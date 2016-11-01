@@ -1,5 +1,6 @@
 package runners
 
+import configuration.Command
 import configuration.Config
 import configuration.Tool
 import logger.LogAnalyzer
@@ -53,22 +54,22 @@ public abstract class AbstractRunner {
     }
 
     def done(APK apk) {
+        def analyzer = new LogAnalyzer();
+        def res = analyzer.processFiles();
+        println(res)
+        writeOutput(res, apk)
+    }
 
-        def analyzer = new LogAnalyzer()
-        def files = analyzer.processFiles()
-
-        def results = new File("results.txt");
-        results.createNewFile();
-
-        results.append("${apk.packageName}: ${files}")
-        results.append(System.getProperty("line.separator"))
-
-        println(files) // Esta es la posta
+    def writeOutput(HashMap hashMap, apk) {
+        def outputFile = new File("./res/${apk.appName}_${Config.TOOL_TO_USE}.txt")
+        outputFile << "Minutes\tMethods\n"
+        hashMap.keySet().sort().each {
+            outputFile << "${it}\t${hashMap[it]}\n"
+        }
     }
 
     public void beforeStart() {
-        def results = new File("results.txt")
-        results.write(" ")  // clean the file
+        Command.runAndRead("adb push utils/monitor_api19.apk data/local/tmp/monitor.apk");
     };
 
     public abstract void testApk(APK apk);

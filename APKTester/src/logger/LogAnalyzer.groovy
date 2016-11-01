@@ -30,9 +30,9 @@ class LogAnalyzer {
             output << it + '\n'
         }*/
 
-        res.put(file.name.split(Pattern.quote('.'))[0].split(Pattern.quote("_")).last(), methods.size());
+        res.put(file.name.split(Pattern.quote('.'))[0].split(Pattern.quote("_")).last().toInteger(), methods.size());
 
-        file.delete()
+//        file.delete()
     }
 
 

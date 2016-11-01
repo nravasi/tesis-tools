@@ -34,13 +34,11 @@ class MonkeyRunner extends AbstractRunner {
     @Override
     void beforeStart() {
        super.beforeStart()
-       Command.runAndRead("adb push utils/monitor_api19.apk data/local/tmp/monitor.apk");
     }
 
     @Override
     void afterApk(APK apk) {
         super.afterApk(apk)
-
         ADB.RemoveAPK(apk.packageName);
     }
 

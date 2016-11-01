@@ -1,8 +1,10 @@
 package runners
 
+import configuration.ADB
 import configuration.Command
 import configuration.Config
 import model.APK
+import model.StreamGobbler
 
 /**
  * Created by nmravasi on 10/8/16.
@@ -15,7 +17,7 @@ class SapienzRunner extends AbstractRunner {
 
     @Override
     void beforeStart() {
-//        def monitorInstalled = Command.runAndRead("adb push utils/monitor_api19.apk data/local/tmp/monitor.apk");
+        super.beforeStart()
     }
 
     @Override
@@ -23,9 +25,25 @@ class SapienzRunner extends AbstractRunner {
         println("Starting sapienz for apk ${apk.appName}")
 
         def process = Command.run("python ${Config.SAPIENZ_DIR}main.py ${apk.file.absolutePath}")
+        StreamGobbler errorGobbler = new
+                StreamGobbler(process.getErrorStream(), "ERROR");
+
+        // any output?
+        StreamGobbler outputGobbler = new
+                StreamGobbler(process.getInputStream(), "OUTPUT");
+
+        // kick them off
+        errorGobbler.start();
+        outputGobbler.start();
         process.waitForOrKill(Config.minutes * 60000)
         println("Terminating sapienz for apk ${apk.appName}")
 
+    }
+
+    @Override
+    void afterApk(APK apk) {
+        super.afterApk(apk)
+        ADB.RemoveAPK(apk.packageName);
     }
 
     @Override
